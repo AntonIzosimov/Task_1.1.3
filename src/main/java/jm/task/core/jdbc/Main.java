@@ -1,21 +1,22 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
+
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
         UserService userService = new UserServiceImpl();
-
+        userService.createUsersTable();
         User user = new User("IVAN", "URINOV", (byte) 18);
         User user1 = new User("SVETA", "POLIKARPOVA", (byte) 18);
         User user2 = new User("PETR", "DETROV", (byte) 18);
         User user3 = new User("SIDR", "SIDOROV", (byte) 18);
-
-        userService.createUsersTable();
 
         userService.saveUser(user.getName(), user.getLastName(), user.getAge());
         System.out.println("Пользователь с именем: " + user.getName() + " добавлен в базу данных");
